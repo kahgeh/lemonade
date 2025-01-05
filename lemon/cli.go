@@ -13,6 +13,7 @@ const (
 	COPY
 	PASTE
 	SERVER
+	TMUX
 )
 
 const (
@@ -45,6 +46,8 @@ type CLI struct {
 	LineEnding     string
 	LogLevel       int
 	Timeout        time.Duration
+	TmuxTarget     string
+	TmuxKeys       string
 
 	Help bool
 
