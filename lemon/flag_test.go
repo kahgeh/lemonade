@@ -221,15 +221,30 @@ func TestCLIParse(t *testing.T) {
 	})
 
 	assert([]string{"lemonade", "tmux", "--tmux-target", "session:0.0", "--tmux-keys", "echo 'hello'"}, CLI{
-		Type:           TMUX,
-		Host:           defaultHost,
-		Port:           defaultPort,
-		Allow:          defaultAllow,
-		TransLoopback:  true,
-		TransLocalfile: true,
-		LogLevel:       defaultLogLevel,
-		Timeout:        defaultTimeout,
-		TmuxTarget:     "session:0.0",
-		TmuxKeys:       "echo 'hello'",
+		Type:                 TMUX,
+		Host:                 defaultHost,
+		Port:                 defaultPort,
+		Allow:                defaultAllow,
+		TransLoopback:        true,
+		TransLocalfile:       true,
+		LogLevel:             defaultLogLevel,
+		Timeout:              defaultTimeout,
+		TmuxTarget:           "session:0.0",
+		TmuxKeys:             "echo 'hello'",
+		TmuxSelectTargetPane: false,
+	})
+
+	assert([]string{"lemonade", "tmux", "--tmux-target", "session:0.0", "--tmux-keys", "echo 'hello'", "--tmux-select-target-pane"}, CLI{
+		Type:                 TMUX,
+		Host:                 defaultHost,
+		Port:                 defaultPort,
+		Allow:                defaultAllow,
+		TransLoopback:        true,
+		TransLocalfile:       true,
+		LogLevel:             defaultLogLevel,
+		Timeout:              defaultTimeout,
+		TmuxTarget:           "session:0.0",
+		TmuxKeys:             "echo 'hello'",
+		TmuxSelectTargetPane: true,
 	})
 }

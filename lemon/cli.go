@@ -38,16 +38,17 @@ type CLI struct {
 	DataSource string
 
 	// options
-	Port           int
-	Allow          string
-	Host           string
-	TransLoopback  bool
-	TransLocalfile bool
-	LineEnding     string
-	LogLevel       int
-	Timeout        time.Duration
-	TmuxTarget     string
-	TmuxKeys       string
+	Port                 int
+	Allow                string
+	Host                 string
+	TransLoopback        bool
+	TransLocalfile       bool
+	LineEnding           string
+	LogLevel             int
+	Timeout              time.Duration
+	TmuxTarget           string
+	TmuxKeys             string
+	TmuxSelectTargetPane bool
 
 	Help bool
 
