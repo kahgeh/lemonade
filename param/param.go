@@ -6,6 +6,7 @@ type OpenParam struct {
 }
 
 type TmuxSendKeysParam struct {
-	Target string
-	Keys   string
+	Target           string
+	Keys             string
+	SelectTargetPane bool
 }

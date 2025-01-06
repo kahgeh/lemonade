@@ -129,12 +129,13 @@ func (c *client) withRPCClient(f func(*rpc.Client) error) error {
 	return f(rc)
 }
 
-func (c *client) TmuxSendKeys(target, keys string) error {
+func (c *client) TmuxSendKeys(target, keys string, selectTargetPane bool) error {
 	c.logger.Debug("Sending tmux keys", "target", target, "keys", keys)
 	return c.withRPCClient(func(rc *rpc.Client) error {
 		p := &param.TmuxSendKeysParam{
-			Target: target,
-			Keys:   keys,
+			Target:           target,
+			Keys:             keys,
+			SelectTargetPane: selectTargetPane,
 		}
 		err := rc.Call("Tmux.SendKeys", p, dummy)
 		if err != nil {
