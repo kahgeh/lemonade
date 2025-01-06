@@ -63,7 +63,7 @@ func Do(c *lemon.CLI, args []string) int {
 		c.Out.Write([]byte(text))
 	case lemon.TMUX:
 		logger.Debug("Sending keys to tmux")
-		err = lc.TmuxSendKeys(c.TmuxTarget, c.TmuxKeys)
+		err = lc.TmuxSendKeys(c.TmuxTarget, c.TmuxKeys, c.TmuxSelectTargetPane)
 		logger.Debug("Sent keys to tmux")
 	case lemon.SERVER:
 		logger.Debug("Starting Server")
