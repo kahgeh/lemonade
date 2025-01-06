@@ -4,6 +4,7 @@ import (
 	"os"
 	"reflect"
 	"testing"
+	"time"
 )
 
 func TestCLIParse(t *testing.T) {
@@ -21,6 +22,7 @@ func TestCLIParse(t *testing.T) {
 	defaultHost := "localhost"
 	defaultAllow := "0.0.0.0/0,::/0"
 	defaultLogLevel := 1
+	defaultTimeout := 100 * time.Millisecond
 
 	assert([]string{"xdg-open", "http://example.com"}, CLI{
 		Type:           OPEN,
@@ -30,6 +32,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "http://example.com",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -41,6 +44,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "http://example.com",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -51,6 +55,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -61,6 +66,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -71,6 +77,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -82,6 +89,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "hogefuga",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -93,6 +101,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "hogefuga",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -104,6 +113,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "http://example.com",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -115,6 +125,7 @@ func TestCLIParse(t *testing.T) {
 		DataSource:     "hogefuga",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -125,6 +136,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -135,6 +147,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          "192.168.0.0/24",
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -145,6 +158,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  false,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -155,6 +169,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -165,6 +180,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: false,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -175,6 +191,7 @@ func TestCLIParse(t *testing.T) {
 		Allow:          defaultAllow,
 		TransLoopback:  true,
 		TransLocalfile: true,
+		Timeout:        defaultTimeout,
 		LogLevel:       defaultLogLevel,
 	})
 
@@ -187,6 +204,7 @@ func TestCLIParse(t *testing.T) {
 		TransLoopback:      true,
 		TransLocalfile:     true,
 		NoFallbackMessages: true,
+		Timeout:            defaultTimeout,
 		LogLevel:           defaultLogLevel,
 	})
 
@@ -198,6 +216,20 @@ func TestCLIParse(t *testing.T) {
 		TransLoopback:      true,
 		TransLocalfile:     true,
 		NoFallbackMessages: true,
+		Timeout:            defaultTimeout,
 		LogLevel:           defaultLogLevel,
+	})
+
+	assert([]string{"lemonade", "tmux", "--tmux-target", "session:0.0", "--tmux-keys", "echo 'hello'"}, CLI{
+		Type:           TMUX,
+		Host:           defaultHost,
+		Port:           defaultPort,
+		Allow:          defaultAllow,
+		TransLoopback:  true,
+		TransLocalfile: true,
+		LogLevel:       defaultLogLevel,
+		Timeout:        defaultTimeout,
+		TmuxTarget:     "session:0.0",
+		TmuxKeys:       "echo 'hello'",
 	})
 }
