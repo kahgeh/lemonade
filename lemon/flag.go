@@ -61,6 +61,10 @@ func (c *CLI) getCommandType(args []string) (s CommandStyle, err error) {
 			c.Type = SERVER
 			del(i)
 			return
+		case "tmux":
+			c.Type = TMUX
+			del(i)
+			return
 		}
 	}
 
@@ -79,6 +83,9 @@ func (c *CLI) flags() *flag.FlagSet {
 	flags.BoolVar(&c.NoFallbackMessages, "no-fallback-messages", false, "Do not show fallback messages")
 	flags.DurationVar(&c.Timeout, "rpc-timeout", 100*time.Millisecond, "RPC timeout")
 	flags.IntVar(&c.LogLevel, "log-level", 1, "Log level")
+
+	flags.StringVar(&c.TmuxTarget, "tmux-target", "", "tmux target (session:window.pane)")
+	flags.StringVar(&c.TmuxKeys, "tmux-keys", "", "keys to send to tmux")
 	return flags
 }
 
@@ -98,6 +105,10 @@ func (c *CLI) parse(args []string, skip bool) error {
 		return err
 	}
 	if c.Type == PASTE || c.Type == SERVER {
+		return nil
+	}
+	if c.Type == TMUX {
+		// For tmux command, we expect --tmux-target and --tmux-keys flags
 		return nil
 	}
 

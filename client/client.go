@@ -129,6 +129,21 @@ func (c *client) withRPCClient(f func(*rpc.Client) error) error {
 	return f(rc)
 }
 
+func (c *client) TmuxSendKeys(target, keys string) error {
+	c.logger.Debug("Sending tmux keys", "target", target, "keys", keys)
+	return c.withRPCClient(func(rc *rpc.Client) error {
+		p := &param.TmuxSendKeysParam{
+			Target: target,
+			Keys:   keys,
+		}
+		err := rc.Call("Tmux.SendKeys", p, dummy)
+		if err != nil {
+			c.logger.Error("Tmux.SendKeys failed", "error", err)
+		}
+		return err
+	})
+}
+
 func (c *client) fallbackLocal() (net.Conn, error) {
 	port, err := server.ServeLocal(c.logger)
 	server.LineEndingOpt = c.lineEnding
