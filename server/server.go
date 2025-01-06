@@ -7,7 +7,7 @@ import (
 
 	log "github.com/inconshreveable/log15"
 
-	"github.com/lemonade-command/lemonade/lemon"
+	"github.com/kahgeh/lemonade/lemon"
 	"github.com/pocke/go-iprange"
 )
 

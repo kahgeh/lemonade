@@ -5,7 +5,7 @@ import (
 	"log"
 	"os/exec"
 
-	"github.com/lemonade-command/lemonade/param"
+	"github.com/kahgeh/lemonade/param"
 )
 
 type Tmux struct{}

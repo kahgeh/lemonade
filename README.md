@@ -1,34 +1,27 @@
-
-Lemonade
-========
+# Lemonade
 
 remote...lemote...lemode......Lemonade!!! :lemon: :lemon:
 
 Lemonade is a remote utility tool.
-(copy, paste and open browser) over TCP.
+(copy, paste, open browser, tmux send-keys) over TCP.
 
-[![Build Status](https://travis-ci.org/lemonade-command/lemonade.svg?branch=master)](https://travis-ci.org/lemonade-command/lemonade)
+This is a fork of the [original lemonade](https://github.com/lemonade-command/lemonade), solely for my personal use
 
-Maintainers wanted
-==========
+# Maintainers wanted
 
 See https://github.com/lemonade-command/lemonade/issues/25
 
-
-Installation
-------------
+## Installation
 
 ```sh
-go get -d github.com/lemonade-command/lemonade
-cd $GOPATH/src/github.com/lemonade-command/lemonade/
+go get -d github.com/kahgeh/lemonade
+cd $GOPATH/src/github.com/kahgeh/lemonade/
 make install
 ```
 
-Or download from [latest release](https://github.com/lemonade-command/lemonade/releases/latest)
+Or download from [latest release](https://github.com/kahgeh/lemonade/releases/latest)
 
-
-Example of use
-----------------
+## Example of use
 
 ![Example](http://f.st-hatena.com/images/fotolife/P/Pocke/20150823/20150823173041.gif)
 
@@ -43,9 +36,7 @@ You input `cat file.txt | lemonade copy`. Then, lemonade copies text of the file
 
 In addition to the above, lemonade supports pasting and opening URL.
 
-
-Usage
---------
+## Usage
 
 ```sh
 Usage: lemonade [options]... SUB_COMMAND [arg]
@@ -66,16 +57,13 @@ Options:
   --help                      Show this message
 ```
 
-
 ### On server (in the above, Windows)
 
 ```sh
 $ lemonade server
 ```
 
-
 ### Client (in the above, Linux)
-
 
 ```sh
 # You want to copy a text
@@ -88,9 +76,7 @@ $ lemonade paste
 $ lemonade open 'http://google.com'
 ```
 
-
-Configuration
----------------
+## Configuration
 
 You can override command line options by configuration file.
 There is configuration file at `~/.config/lemonade.toml`.
@@ -105,7 +91,6 @@ line-ending = 'crlf'
 
 - `port` is a listening port of TCP.
 - `allow` is a comma separated list of a allowed IP address(with CIDR block).
-
 
 ### Client
 
@@ -124,10 +109,7 @@ line-ending = 'crlf'
 
 Detail of `trans-loopback` and `trans-localfile` are described Advanced Usage.
 
-
-Advanced Usage
------------------
-
+## Advanced Usage
 
 ### trans-loopback
 
@@ -145,7 +127,6 @@ Because, at server, loopback address is server itself.
 If this option is true, server receives IP address of client.
 So, server can open URL!
 
-
 ### trans-localfile
 
 Default: true
@@ -162,7 +143,6 @@ Because, at server, `./file.txt` doesn't exist.
 If this option is true, server receives IP address of client. And client serve the local file.
 So, server can open the local file!
 
-
 ### line-ending
 
 Default: "" (NONE)
@@ -171,11 +151,9 @@ This options works with `copy` and `paste` command only.
 
 If this option is `lf` or `crlf`, lemonade converts the line ending of text to the specified.
 
-
 ### Alias
 
 You can use lemonade as a `xdg-open`, `pbcopy` and `pbpaste`.
-
 
 For example.
 
@@ -183,7 +161,6 @@ For example.
 $ ln -s /path/to/lemonade /usr/bin/xdg-open
 $ xdg-open  'http://example.com' # Same as lemonade open 'http://example.com'
 ```
-
 
 ### Secure TCP Connection
 
@@ -202,12 +179,9 @@ See:
 - [SSH/OpenSSH/PortForwarding - Community Help Wiki](https://help.ubuntu.com/community/SSH/OpenSSH/PortForwarding)
 - [WOW! and security? · Issue #14 · lemonade-command/lemonade](https://github.com/lemonade-command/lemonade/issues/14#)
 
-
-
-Links
--------
+## Links
 
 - https://speakerdeck.com/pocke/remote-utility-tool-lemonade
-- [リモートのPCのブラウザやクリップボードを操作するツール Lemonade を作った - pockestrap](http://pocke.hatenablog.com/entry/2015/07/04/235118)
+- [リモートの PC のブラウザやクリップボードを操作するツール Lemonade を作った - pockestrap](http://pocke.hatenablog.com/entry/2015/07/04/235118)
 - [リモートユーティリティーツール、Lemonade v0.2.0 をリリースした - pockestrap](http://pocke.hatenablog.com/entry/2015/08/23/221543)
-- [lemonade v1.0.0をリリースした - pockestrap](http://pocke.hatenablog.com/entry/2016/04/19/233423)
+- [lemonade v1.0.0 をリリースした - pockestrap](http://pocke.hatenablog.com/entry/2016/04/19/233423)
