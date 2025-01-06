@@ -86,7 +86,7 @@ func (c *CLI) flags() *flag.FlagSet {
 
 	flags.StringVar(&c.TmuxTarget, "tmux-target", "", "tmux target (session:window.pane)")
 	flags.StringVar(&c.TmuxKeys, "tmux-keys", "", "keys to send to tmux")
-	flags.BoolVar(&c.TmuxSelectTargetPane, "tmux-select-target-pane", false, "interactively select tmux target")
+	flags.BoolVar(&c.TmuxSelectTargetPane, "tmux-select-target-pane", false, "selects the pane specified by --tmux-target after sending keys")
 	return flags
 }
 

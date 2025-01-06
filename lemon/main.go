@@ -13,6 +13,7 @@ Sub Commands:
   copy [text]                 Copy text.
   paste                       Paste text.
   server                      Start lemonade server.
+  tmux [see --tmux-* options] Send keys via tmux.
 
 Options:
   --port=2489                 TCP port number
@@ -23,8 +24,10 @@ Options:
   --trans-loopback=true       Translate loopback address    [open subcommand only]
   --trans-localfile=true      Translate local file path     [open subcommand only]
   --log-level=1               Log level                     [4 = Critical, 0 = Debug]
-  --help                      Show this message
-
+  --help                      Show this
+	--tmux-target               Target tmux target pane       [potential format/values- session:window.pane, window.pane or pane]
+	--tmux-send-keys            Keys to send
+	--tmux-select-target-pane   Select target pane            [selects the pane specified by --tmux-target after sending keys]
 
 Version:
   %s`, Version)
