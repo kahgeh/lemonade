@@ -41,9 +41,13 @@ func Serve(c *lemon.CLI, logger log.Logger) error {
 		}
 		logger.Info("Request from " + conn.RemoteAddr().String())
 		if !ra.InlucdeConn(conn) {
+			logger.Warn("Connection refused because it's not in the allowed IP range.")
 			continue
 		}
+		logger.Debug("Sending connection to channel...")
+
 		connCh <- conn
+		logger.Debug("Sent connection to channel")
 		rpc.ServeConn(conn)
 	}
 }
@@ -51,6 +55,7 @@ func Serve(c *lemon.CLI, logger log.Logger) error {
 // ServeLocal is for fall back when lemonade client can't connect to server.
 // returns port number, error
 func ServeLocal(logger log.Logger) (int, error) {
+	logger.Debug("Falling back to local server")
 	l, err := net.Listen("tcp", "localhost:0")
 	if err != nil {
 		return 0, err
@@ -74,4 +79,6 @@ func init() {
 	rpc.Register(uri)
 	clipboard := &Clipboard{}
 	rpc.Register(clipboard)
+	tmux := &Tmux{}
+	rpc.Register(tmux)
 }
